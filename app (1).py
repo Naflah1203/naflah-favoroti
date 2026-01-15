@@ -1,3 +1,7 @@
+File "/mount/src/naflah-favoroti/app (1).py", line 1
+  import {
+         ^
+SyntaxError: invalid syntax
 import {
   LineChart, Line, BarChart, Bar,
   XAxis, YAxis, Tooltip, ResponsiveContainer
@@ -59,4 +63,5 @@ export default function DashboardCabang() {
     </div>
   );
 }
+
 
