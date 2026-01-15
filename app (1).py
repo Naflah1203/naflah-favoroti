@@ -1,67 +1,33 @@
-File "/mount/src/naflah-favoroti/app (1).py", line 1
-  import {
-         ^
-SyntaxError: invalid syntax
-import {
-  LineChart, Line, BarChart, Bar,
-  XAxis, YAxis, Tooltip, ResponsiveContainer
-} from "recharts";
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 
-const dataHarian = [
-  { hari: "Senin", penjualan: 420000 },
-  { hari: "Selasa", penjualan: 380000 },
-  { hari: "Rabu", penjualan: 450000 },
-  { hari: "Kamis", penjualan: 500000 },
-  { hari: "Jumat", penjualan: 620000 },
-  { hari: "Sabtu", penjualan: 710000 },
-  { hari: "Minggu", penjualan: 680000 },
-];
+st.title("Dashboard Pilot Project – Cabang Favoroti Sudirman")
+st.write("Alamat: Jl. Jenderal Sudirman No.22")
 
-const dataProduk = [
-  { produk: "Roti Cokelat", jumlah: 320 },
-  { produk: "Roti Keju", jumlah: 260 },
-  { produk: "Roti Tawar", jumlah: 180 },
-];
+# DATA
+data_harian = pd.DataFrame({
+    "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+    "Penjualan": [420000, 380000, 450000, 500000, 620000, 710000, 680000]
+})
 
-export default function DashboardCabang() {
-  return (
-    <div style={{ padding: 20 }}>
-      <h2>Dashboard Pilot Project_Cabang Favoroti Sudirman</h2>
+data_produk = pd.DataFrame({
+    "Produk": ["Roti Cokelat", "Roti Keju", "Roti Tawar"],
+    "Jumlah": [320, 260, 180]
+})
 
-      <p><b>Alamat:</b> Jl. Jenderal Sudirman No.22</p>
+# GRAFIK GARIS
+st.subheader("Penjualan Harian")
+st.line_chart(data_harian.set_index("Hari"))
 
-      <h3>Penjualan Harian</h3>
-      <div style={{ height: 300 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={dataHarian}>
-            <XAxis dataKey="hari" />
-            <YAxis />
-            <Tooltip />
-            <Line dataKey="penjualan" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+# GRAFIK BATANG
+st.subheader("Penjualan Berdasarkan Produk")
+st.bar_chart(data_produk.set_index("Produk"))
 
-      <h3>Penjualan Berdasarkan Produk</h3>
-      <div style={{ height: 300 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={dataProduk}>
-            <XAxis dataKey="produk" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="jumlah" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
-      <h3>Insight & Keputusan</h3>
-      <ul>
-        <li>Penjualan tertinggi terjadi di akhir pekan</li>
-        <li>Roti cokelat merupakan produk terlaris</li>
-        <li>Promo sore hari diterapkan pada hari kerja</li>
-      </ul>
-    </div>
-  );
-}
-
-
+# INSIGHT
+st.subheader("Insight & Keputusan")
+st.write("""
+- Penjualan tertinggi terjadi di akhir pekan  
+- Roti cokelat merupakan produk terlaris  
+- Promo sore hari diterapkan pada hari kerja  
+""")
