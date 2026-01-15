@@ -22,7 +22,7 @@ const dataProduk = [
 export default function DashboardCabang() {
   return (
     <div style={{ padding: 20 }}>
-      <h2>Dashboard Pilot Project – Cabang Favoroti Sudirman</h2>
+      <h2>Dashboard Pilot Project_Cabang Favoroti Sudirman</h2>
 
       <p><b>Alamat:</b> Jl. Jenderal Sudirman No.22</p>
 
@@ -59,3 +59,4 @@ export default function DashboardCabang() {
     </div>
   );
 }
+
